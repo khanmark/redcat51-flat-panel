@@ -25,9 +25,8 @@ render   part_surround     surround        0,0,0,50,0,25,500
 render   part_surround_front surround_front 0,0,0,50,0,25,500
 render   part_collar       collar          0,0,0,50,0,25,500
 render   part_diffuser     diffuser        0,0,0,50,0,25,500
-render   part_collar_nut_trap collar_nut_trap 0,0,0,40,0,25,500
 # close-up of the nut pockets (fixed camera, no --viewall)
-openscad --backend=manifold --render -o "$OUT/nut_trap_detail.png" --imgsize=1400,1000 \
+openscad --backend=manifold --render -o "$OUT/nut_pocket_detail.png" --imgsize=1400,1000 \
     --camera=44,-26,8,58,0,10,120 --projection=p --colorscheme=Tomorrow \
     -D 'view="nut_detail"' .build/views.scad
 # The same model scaled up for a ~120 mm-diffuser scope (see README, "Scaling it up")

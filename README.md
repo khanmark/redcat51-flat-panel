@@ -24,7 +24,7 @@ Part order, from the telescope side to the back:
 
 | # | Part | What it does |
 |---|------|--------------|
-| 1 | **Collar** | Slides over the RedCat dew shield (81 mm inside diameter, stops against an internal lip). Its flange clamps the diffuser. Three tabs carry the bolts' nuts. |
+| 1 | **Collar** | Slides over the RedCat dew shield (81 mm inside diameter, stops against an internal lip). Its flange clamps the diffuser. Each of its three tabs holds an M3 nut in a pocket. |
 | 2 | **Diffuser disc** | 88 mm printed disc: a 1.0 mm thin centre with a raised rim that fills the recess. (A 3 mm opal acrylic disc fits the same surround.) Drops into the surround's front recess. |
 | 3 | **Surround** | Holds the diffuser, the baffle skirt, the LED ring, a channel for the strip connector, and a pocket for the buck converter. |
 | 4 | **Back wall** | Closes the cavity and the converter pocket. A thin spigot ring locates it in the surround. **Print it in white** - its inside face is the reflector that bounces the LED light toward the diffuser. |
@@ -54,7 +54,7 @@ Full list with short Amazon links: **[bom/BOM.pdf](bom/BOM.pdf)** (source: [bom/
 | MP1584EN buck converter | 1 of the 8-pack. Its trim pot sets the brightness once, during assembly. |
 | 12 V barrel-plug pigtails, 2.1 x 5.5 mm | Plug into your existing 12 V supply. |
 | PLA+ filament, black + white | The back wall must be white. |
-| 3 x **M3x40** bolts, 3 x M3 hex nuts | From any M3 screw kit. |
+| 3 x **M3x35** bolts, 3 x M3 hex nuts | From any M3 screw kit. |
 | Diffuser disc | Printed: [stl/flat_panel_diffuser.stl](stl/flat_panel_diffuser.stl). No purchase needed. |
 | 12 V power source | Not in the BOM. Use your rig's. A 12 V DC power bank works too (as in the photo above). |
 
@@ -87,8 +87,7 @@ None of these are needed for a working panel.
 |---------------|------------|
 | **Acrylic diffuser**, 88 mm x 3 mm opal | Use the printed diffuser. For acrylic, laser-cut [optional/acrylic_diffuser_88mm.dxf](optional/acrylic_diffuser_88mm.dxf). It fits the standard surround, nothing else changes. |
 | **0.6 mm printed diffuser** | Use the standard 1.0 mm one. The thinner [optional/flat_panel_diffuser_0.6mm.stl](optional/flat_panel_diffuser_0.6mm.stl) fits the same surround. |
-| **Nut-trap collar** (M3x35 bolts) | Print [optional/flat_panel_collar_nut_trap.stl](optional/flat_panel_collar_nut_trap.stl) instead of the standard collar. Each M3 nut sits in a hex pocket in the free end of the collar tab, so you use shorter **M3x35** bolts and there is no loose nut to hold at the tab end. Not test-printed yet. See [Nut-trap collar](#nut-trap-collar-optional). |
-| **M3 heat-set inserts** | Not needed. Each M3x40 bolt goes through the back wall, surround lug and collar tab, and a hex nut on the tab end clamps it. With inserts, melt one into each collar tab hole and use M3x35 bolts. |
+| **M3 heat-set inserts** | Not needed: each bolt threads into a hex nut sitting in a pocket in the collar tab. If you prefer inserts, print [optional/flat_panel_collar_heat_insert.stl](optional/flat_panel_collar_heat_insert.stl) instead of the standard collar, melt an insert into each tab hole, and use the same M3x35 bolts. |
 | **COB strip-to-wire connectors**, 10 mm 2-pin | Solder the wires straight to the strip pads. They fit the same space. |
 | **Soldering flux** | Helps solder stick. Rosin-core solder alone works. |
 | **Heat-shrink tubing** | Handy for insulating joints. Tape works in a pinch. |
@@ -100,13 +99,13 @@ None of these are needed for a working panel.
 ```
 scad/flat_panel.scad          Parametric OpenSCAD source (all parts)
 stl/                          The default build - print all four:
-    flat_panel_collar.stl
+    flat_panel_collar.stl       with an M3 nut pocket in each tab
     flat_panel_surround.stl
     flat_panel_back.stl
     flat_panel_diffuser.stl     printed diffuser, 1.0 mm centre + raised rim
 optional/                     Alternatives, none needed:
     flat_panel_diffuser_0.6mm.stl     thinner printed diffuser (same surround)
-    flat_panel_collar_nut_trap.stl    collar with M3 nut pockets (M3x35 bolts)
+    flat_panel_collar_heat_insert.stl collar for M3 heat-set inserts instead of nuts
     acrylic_diffuser_88mm.dxf         88 mm circle for laser-cutting a 3 mm acrylic diffuser
 bom/BOM.pdf                   Bill of materials (PDF, short links)
 bom/bom.html                  BOM source
@@ -125,8 +124,7 @@ All three parts print **without supports**, in the orientation they are modelled
 |------|------------------------|
 | Back wall | Flat on the bed, spigot ring pointing up (**in white**, see below) |
 | Surround | Front face (the diffuser recess side) on the bed |
-| Collar | Flange on the bed, tube pointing up |
-| Nut-trap collar (optional) | Same: flange on the bed. The nut pockets open upward, so no supports |
+| Collar | Flange on the bed, tube pointing up. The nut pockets open upward, so no supports |
 | Printed diffuser | Flat (back) face on the bed, rim up (white, solid) |
 
 | Back wall | Surround (open side up for the picture; print it flipped) | Collar |
@@ -153,17 +151,17 @@ The default diffuser is printed: [stl/flat_panel_diffuser.stl](stl/flat_panel_di
 * **Thinner option:** [optional/flat_panel_diffuser_0.6mm.stl](optional/flat_panel_diffuser_0.6mm.stl) has a 0.6 mm centre. Expect it to pass more light but diffuse less. Neither thickness has been compared side by side in this repo, so treat that as a starting point and try both if your first panel looks too dim or too blotchy.
 * **Acrylic option:** a 3 mm opal acrylic disc fills the recess by itself and fits the same surround. Laser-cut [optional/acrylic_diffuser_88mm.dxf](optional/acrylic_diffuser_88mm.dxf).
 
-### Nut-trap collar (optional)
+### Nut pockets in the collar
 
-Print [optional/flat_panel_collar_nut_trap.stl](optional/flat_panel_collar_nut_trap.stl) **instead of** the standard collar to use **M3x35** bolts with the nut sitting in the end of each collar tab.
+Each collar tab has a hex pocket in its free (scope-side) end for a standard M3 nut (5.5 mm across flats, 2.4 mm thick), so the standard bolt is a short **M3x35** and there is no loose nut to hold at the tab end.
 
-![Nut pockets in the collar tab ends](docs/images/nut_trap_detail_labeled.png)
+![Nut pockets in the collar tab ends](docs/images/nut_pocket_detail_labeled.png)
 
-* Each collar tab has a hex pocket in its free (scope-side) end for a standard M3 nut (5.5 mm across flats, 2.4 mm thick). It is open at the top as printed, so there is nothing to bridge and the nut drops in from above. The tabs are a little wider (10 mm) than in the standard collar to keep walls around the pocket.
-* The bolt (back wall 3 + surround 24 + tab 8 = 35 mm) just reaches through the nut, about 0.2 mm past it. If your bolts are a hair short, use M3x40 instead; it then sticks out about 5 mm.
+* The pocket is open at the top as printed, so there is nothing to bridge and the nut drops in from above. The tabs are a little wider (10 mm) than the surround's lugs to keep walls around the pocket.
+* The bolt (back wall 3 + surround 24 + tab 8 = 35 mm) just reaches through the nut, about 0.2 mm past it. If your bolts are a hair short, a slightly longer one also works; it just sticks out past the tab.
 * A little first-layer squish or over-extrusion can narrow the pocket: if a nut won't drop in, ream it gently, or raise `nut_clear` (default 0.2 mm per side) and re-export.
-* This variant is **not test-printed yet**. Try one pocket with a spare nut before committing to the whole collar.
-* The nut is only held by the pocket walls, so it can fall out if you turn the collar over before the bolt is in. Tape or poster putty over the tab end holds it until the bolts are threaded (see steps 4 and 9 below).
+* The pocket dimensions are untested in print. Try one pocket with a spare nut before printing the whole collar.
+* The nut is held only by the pocket walls, so it can fall out if you turn the collar over before the bolt is in. Tape or poster putty over the tab end holds it until the bolts are threaded (see steps 4 and 9).
 
 ### Fit check
 
@@ -179,14 +177,13 @@ Do a dry fit of the printed parts and the diffuser before you wire anything.
 2. **Wire the converter.** Solder the pigtail's two leads to the converter's **IN+ / IN-** pads. Plug the pigtail into your 12 V supply and, with a multimeter on **OUT+ / OUT-**, check what it reads. These converters usually ship set to a very low output, so leave the trim pot alone for now (the real brightness is set in step 7). Unplug before continuing. Heat-shrink the joints.
 3. **Prepare the strip.** Cut about 30 cm of LED strip at a cut mark (roughly pi x the skirt's 93 mm outside diameter). Attach two wires (red = +, black = -) to the **start** of the strip with a COB clip connector, or solder them to the pads. Connect those wires to the converter's **OUT+ / OUT-** pads. Keep the wires long enough to run from the connector channel into the converter pocket through the side slot.
 4. **Seat the diffuser.** Lay the surround on the bench with its front face up and drop the diffuser disc into the recess, **rim face up** (flat face down) - it rests on the 45-degree seat and should sit flush with the front face. Place the collar on top, flange down, lining up the three bolt lugs and the connector-box outline, so the flange clamps the disc's edge.
-   **Nut-trap collar:** drop an M3 nut into the pocket in each tab end first, and hold it there with a bit of tape or poster putty until the bolts are in.
+   **Nuts:** drop an M3 nut into the pocket in each collar tab end first, and hold it there with a bit of tape or poster putty until the bolts are in.
 5. **Flip the stack so the open back faces you.** Press the strip around the outside of the baffle skirt, standing on its edge on the front ring, with the **LEDs facing outward toward the cavity wall**. Drop the connector into its channel (it slides in from the open back and rests on the front ring).
 6. **Fit the converter.** Slide the buck converter into its pocket from the back, then feed its wires through the slots as shown in the picture above (strip wires through the side slot, DC input leads out through the slot at the far end of the pocket). Leave the DC leads long enough to reach your supply.
 7. **Test fit, and set the brightness now.** This is your only chance to set the dimming: once the back wall is bolted on, the trim pot can't be reached. Plug in the supply. **Don't be alarmed if you see no light at first:** the converter's output is set very low by default, so on your first power-up the strip will probably look off. Turn the trim pot up slowly (a small screwdriver, with the multimeter on the output if you like) until the strip comes on, then check that the diffuser glows evenly and fix any pinched wires. Then, with the back wall still off, slide the collar onto your scope, take short test exposures with your camera, and turn the converter's trim pot until the exposure is where you want it for flats, e.g. a histogram peak in the middle of the range at an exposure time you're happy with. Aim for a level that works across all your filters, since you'll fine-tune later with exposure time or gain. Unplug when you're done and don't touch the trim pot again. (If you'd rather have an externally adjustable dimmer, the back wall would need modifying; this design has no provision for one.)
 8. **Close the back.** Seat the back wall's spigot ring into the surround, keeping wires clear of the lugs and the edge.
-9. **Bolt it together.** Push an **M3x40 bolt** through each lug from the back wall side. Thread an **M3 hex nut** onto the end of each bolt where it comes out of the collar tab, holding the nut with your fingers or tweezers while you turn the bolt. Tighten evenly, just snug - it's plastic.
-   Nut-trap collar: push an **M3x35 bolt** through each lug and thread it into the nut sitting in the pocket (the bolt pushes through the tape). No nut to hold. Tighten evenly, just snug.
-   With heat-set inserts: melt them into the collar tab holes first, then use M3x35 bolts. They thread straight in, so no nuts.
+9. **Bolt it together.** Push an **M3x35 bolt** through each lug from the back wall side and thread it into the nut sitting in the collar tab (the bolt pushes through the tape). No nut to hold. Tighten evenly, just snug - it's plastic.
+   With the heat-insert collar: melt the inserts into the tab holes first; the M3x35 bolts then thread straight in, so no nuts or tape.
 
 ![Final assembly from the telescope side](docs/images/telescope_side.png)
 
@@ -211,7 +208,7 @@ If the brightness turns out to be wrong for your setup, you have to unbolt the b
 At the top of the file:
 
 ```openscad
-part = "all"; // [back, surround, collar, diffuser, all, exploded]
+part = "all"; // [back, surround, collar, collar_heat_insert, diffuser, all, exploded]
 ```
 
 * **In the GUI**, open the Customizer (Window menu) and pick the part from the drop-down. Use `all` to see it assembled, `exploded` to see how it fits together, and `diffuser` for the printable disc. Render (F6) and **File > Export > STL** to print.
@@ -222,7 +219,7 @@ openscad -o stl/flat_panel_collar.stl   -D 'part="collar"'   scad/flat_panel.sca
 openscad -o stl/flat_panel_surround.stl -D 'part="surround"' scad/flat_panel.scad
 openscad -o stl/flat_panel_back.stl     -D 'part="back"'     scad/flat_panel.scad
 openscad -o stl/flat_panel_diffuser.stl -D 'part="diffuser"' scad/flat_panel.scad
-openscad -o optional/flat_panel_collar_nut_trap.stl -D 'part="collar_nut_trap"' scad/flat_panel.scad   # optional nut-trap collar
+openscad -o optional/flat_panel_collar_heat_insert.stl -D 'part="collar_heat_insert"' scad/flat_panel.scad   # optional collar for heat-set inserts
 ```
 
 The thinner printed diffuser is the same part with a different centre thickness:
@@ -259,8 +256,8 @@ Defaults are for the RedCat 51 II. All lengths are millimetres.
 | | `slot_w`, `dc_slot_w` | 4, 3 | Widths of the wire slots. |
 | Strip connector | `conn_w`, `conn_l`, `conn_t`, `conn_clear` | 11.5, 13.5, 4.2, 0.5 | Size of the COB clip connector (+ clearance). Re-measure if you use a different connector. |
 | Converter pocket | `puck_l`, `puck_w`, `puck_t`, `puck_clear`, `puck_clear_l`, `puck_wall` | 25.5, 17, 4.5, 0.5, 4, 1.6 | Size of the buck converter (+ clearances). Re-measure for a different board. |
-| Fasteners | `lug_d`, `screw_clear`, `insert_d`, `insert_tab_t`, `lug_angles` | 8, 3.4, 4.0, 8, [90, 210, 330] | Bolt lugs. `insert_d` is the hole in the collar tabs: a loose pass-through for the hex-nut build, or sized for heat-set inserts. |
-| Nut-trap collar | `nut_af`, `nut_h`, `nut_clear`, `nut_tab_d` | 5.5, 2.4, 0.2, 10 | Only used by `part = "collar_nut_trap"`. M3 nut size, pocket clearance per side, and the wider tab width. The pocket is in the free end of each tab. |
+| Fasteners | `lug_d`, `screw_clear`, `insert_d`, `insert_tab_t`, `lug_angles` | 8, 3.4, 4.0, 8, [90, 210, 330] | Bolt lugs. `insert_d` is the tab hole size for the heat-insert collar only (`part = "collar_heat_insert"`). |
+| Nut pockets | `nut_af`, `nut_h`, `nut_clear`, `nut_tab_d` | 5.5, 2.4, 0.2, 10 | M3 nut size, pocket clearance per side, and the collar tab width. The pocket is in the free end of each collar tab. |
 
 ### Scaling it up for a different scope
 
@@ -277,7 +274,7 @@ The panel is sized from the diffuser outwards, so scaling is mostly a matter of 
 | `cavity_id` | `diffuser_d` + 12 (room for skirt, LED strip and its wall) |
 | `cavity_depth` | about 0.3 x `diffuser_d` for larger panels (the RedCat default is 20, about 0.23; see [Limits of scaling up](#limits-of-scaling-up)) |
 | `skirt_len` | about half of `cavity_depth` (strip width still sets the minimum) |
-| bolt length | `cavity_depth` + 20 mm with a hex nut on the tab end (the default 20 gives the M3x40 in the BOM), or `cavity_depth` + 15 mm with the nut-trap collar or heat-set inserts |
+| bolt length | `cavity_depth` + 15 mm (the default 20 gives the M3x35 in the BOM) |
 
 Steps:
 
@@ -288,7 +285,7 @@ Steps:
 5. Export the `diffuser` part at the new `diffuser_d` (with the same `diffuser_t` as the surround), or, for acrylic, cut a disc at that diameter - [optional/acrylic_diffuser_88mm.dxf](optional/acrylic_diffuser_88mm.dxf) is just a circle; draw a new one at your diameter. Check that `diffuser_rim_w` still leaves the rim inside `lip_id`.
 6. Cut your LED strip to roughly pi x (`skirt_id` + 2 x `skirt_t`).
 
-For example, a ~108 mm scope end (run on the command line, or type these values into the Customizer). The deeper cavity keeps the light even at this size (see below), and means M3x55 bolts:
+For example, a ~108 mm scope end (run on the command line, or type these values into the Customizer). The deeper cavity keeps the light even at this size (see below), and means M3x50 bolts:
 
 ```bash
 openscad -o my_surround.stl -D 'part="surround"' \
@@ -331,7 +328,7 @@ What that means:
 * **12 inches (305 mm) is not a one-line change.** With a ~92 mm deep cavity it is optically plausible, but:
   * **Light output** drops to roughly 1/50 of the 88 mm panel for the same strip, so it may be too dim even at full converter output. You would want a denser strip or a second ring, which this design doesn't have.
   * **Printer size:** the parts would be about 322 x 329 mm, which won't fit a typical 220-256 mm bed. The surround and back wall alone are about 460 g and 310 g of PLA at 100 % infill.
-  * **Bolts:** with that depth the bolt length is about 110 mm, so M3x110 bolts or threaded rod, not the M3x40 from the kit.
+  * **Bolts:** with that depth the bolt length is about 107 mm, so M3x110 bolts or threaded rod, not the M3x35 from the kit.
   * **Diffuser:** a 1.0 mm printed centre will sag across 305 mm even with the rim; use acrylic or add support.
   * **Cost:** roughly **\$15-20** of materials by the same per-unit maths as above: up to ~990 g of PLA (about \$11 at the BOM's price, less with normal infill), ~1 m of strip (~\$3), plus the converter, pigtail and wire (~\$2.50). Long bolts and a laser-cut 12-inch acrylic disc are extra and I haven't priced them.
 

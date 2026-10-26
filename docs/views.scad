@@ -54,12 +54,12 @@ module parts_assembled(gap = 0, show_internals = true) {
     color(c_back) translate([0, 0, -surround_h - back_t - 2 * gap]) back_wall();
 }
 
-// M3x40 bolt per lug: head on the outside of the back wall, nut on the end of the collar tab
-module hardware(gap = 0, bolt_len = cavity_depth + 20) for (a = lug_angles) rotate(a) translate([lug_r, 0, 0]) {
+// M3x35 bolt per lug: head on the outside of the back wall, nut seated in the pocket in the collar tab end
+module hardware(gap = 0, bolt_len = cavity_depth + 15) for (a = lug_angles) rotate(a) translate([lug_r, 0, 0]) {
     z_face = -surround_h - back_t - 2 * gap;   // outer face of the back wall
     color(c_bolt) translate([0, 0, z_face - 3]) cylinder(d = 5.5, h = 3, $fn = 24);
     color(c_bolt) translate([0, 0, z_face]) cylinder(d = 3, h = bolt_len, $fn = 24);
-    translate([0, 0, insert_tab_t]) nut();
+    translate([0, 0, insert_tab_t - (nut_h + 0.2)]) nut();
 }
 
 if (view == "hero") {                       // like the original render: back wall up, collar down
@@ -84,7 +84,6 @@ if (view == "hero") {                       // like the original render: back wa
 else if (view == "surround")         rotate([180, 0, 0]) color(c_surround) surround();   // open (back) side up
 else if (view == "surround_front")   color(c_surround) surround();                       // front face up
 else if (view == "collar")           color(c_collar) collar();
-else if (view == "collar_nut_trap")  color(c_collar) collar(true);
 else if (view == "nut_detail") {                                  // pockets in the tab ends: one nut seated, one hovering
     color(c_collar) collar(true);
     rotate(210) translate([lug_r, 0, insert_tab_t - (nut_h + 0.2)]) nut();

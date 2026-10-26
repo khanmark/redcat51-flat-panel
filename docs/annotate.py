@@ -31,7 +31,7 @@ annotate("images/exploded.png", "images/exploded_labeled.png", [
     ("2  Diffuser disc in surround recess", (1100, 470), (800, 520)),
     ("3  Surround (white)",                 (1150, 640), (950, 620)),
     ("4  Back wall (white)",                 (1150, 820), (900, 800)),
-    ("M3x40 bolt + hex nut (x3)",           (290, 150),  (420, 322)),
+    ("M3x35 bolt (x3), nut in tab",           (290, 150),  (420, 322)),
 ])
 annotate("images/components_fit.png", "images/components_fit_labeled.png", [
     ("Diffuser disc",             (1140, 700), (800, 500)),
@@ -40,7 +40,7 @@ annotate("images/components_fit.png", "images/components_fit_labeled.png", [
     ("Buck-converter pocket",     (250, 800),  (500, 560)),
     ("Bolt lug (x3)",             (1000, 90),  (762, 195)),
 ])
-annotate("images/nut_trap_detail.png", "images/nut_trap_detail_labeled.png", [
+annotate("images/nut_pocket_detail.png", "images/nut_pocket_detail_labeled.png", [
     ("M3 nut drops in from the top", (1050, 200), (785, 355)),
     ("Hex pocket in the tab end", (1050, 820), (772, 522)),
 ])

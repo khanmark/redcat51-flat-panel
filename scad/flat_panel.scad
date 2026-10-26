@@ -1,20 +1,19 @@
 // DIY slip-on flat panel for RedCat 51 / Rokinon 135
-// Three support-free parts held together by 3x M3x40 bolts + M3 hex nuts
-// (or 3x M3x35 bolts + M3 heat-set inserts, see insert_d below).
+// Three support-free parts (plus a printed diffuser) held together by 3x M3x35 bolts. Each bolt threads into
+// an M3 hex nut sitting in a pocket in the end of a collar tab (or into a heat-set insert, see collar_heat_insert).
 //
 // Print orientations (as modeled):
 //   back      - flat on bed, spigot up
 //   surround  - front face (diffuser recess) down
-//   collar    - flange down
-//   collar_nut_trap - optional collar with an M3 nut pocket in the free end of each tab (M3x35 bolts); flange down
+//   collar    - flange down; M3 nut pocket in the free end of each tab
+//   collar_heat_insert - optional collar with plain tabs and holes sized for M3 heat-set inserts (insert_d); flange down
 //   diffuser  - flat (back) face on the bed, raised rim up: 3D-printed diffuser, thin centre + rim up to diffuser_t
 //
 // Assembly (front to back):
 //   collar flange -> diffuser disc (sits in surround's front recess) -> surround -> back wall
-//   Bolts go in from the back wall, through the surround lugs and the collar tabs; a hex nut on the
-//   end of each collar tab clamps the stack (or the bolt threads into a heat-set insert instead).
+//   Bolts go in from the back wall, through the surround lugs and the collar tabs, into the nuts.
 
-part = "all"; // [back, surround, collar, collar_nut_trap, diffuser, all, exploded]
+part = "all"; // [back, surround, collar, collar_heat_insert, diffuser, all, exploded]
 
 /* [Fit] */
 collar_id    = 81;    // matches the proven cover: 81 ID / 86 OD - slides over RedCat shield, inside Rokinon hood; no felt
@@ -68,15 +67,15 @@ puck_wall    = 1.6;
 /* [Fasteners] */
 lug_d        = 8;
 screw_clear  = 3.4;
-insert_d     = 4.0;   // hole in the collar tabs: bolt pass-through when using hex nuts; or check your heat-set insert's recommended hole size
+insert_d     = 4.0;   // heat-insert collar only: hole in the tabs - check your heat-set insert's recommended hole size
 insert_tab_t = 8;
 lug_angles   = [90, 210, 330];
 
-/* [Nut-trap collar] optional: a hex nut sits in a pocket in the free (scope-side) end of each collar tab */
+/* [Nut pockets] a hex nut sits in a pocket in the free (scope-side) end of each collar tab */
 nut_af       = 5.5;   // M3 nut, across flats
 nut_h        = 2.4;   // M3 nut thickness
 nut_clear    = 0.2;   // extra clearance per side for the pocket (raise it if your nuts will not drop in)
-nut_tab_d    = 10;    // collar tab width in this version (wider than lug_d so the pocket keeps walls)
+nut_tab_d    = 10;    // collar tab width with nut pockets (wider than lug_d so the pocket keeps walls)
 
 $fn = 180;
 
@@ -188,20 +187,21 @@ module surround() {
     }
 }
 
-// nut_trap = true: an M3 nut pocket in the free end of each tab, open at the top as printed (flange down),
-// so the nut drops in from above. The bolt (M3x35: 3 back wall + 24 surround + 8 tab) just reaches through the nut.
-module collar(nut_trap = false) {
+// nut_pocket = true (default): an M3 nut pocket in the free end of each tab, open at the top as printed (flange
+// down), so the nut drops in from above. The bolt (M3x35: 3 back wall + 24 surround + 8 tab) just reaches through
+// the nut. nut_pocket = false: plain tabs with insert_d holes for heat-set inserts (part = "collar_heat_insert").
+module collar(nut_pocket = true) {
     difference() {
         union() {
             cylinder(d = outer_d, h = flange_t);
             side_body(flange_t);   // match the surround's outline
-            lug_pads(insert_tab_t, nut_trap ? nut_tab_d : lug_d);
+            lug_pads(insert_tab_t, nut_pocket ? nut_tab_d : lug_d);
             cylinder(d = collar_id + 2 * wall, h = flange_t + collar_depth);
         }
         translate([0, 0, -1]) cylinder(d = lip_id, h = 100);
         translate([0, 0, flange_t]) cylinder(d = collar_id, h = 100);
-        lug_holes(nut_trap ? screw_clear : insert_d, insert_tab_t);
-        if (nut_trap) for (a = lug_angles) rotate(a)       // hex corners point along the tab, flats across it
+        lug_holes(nut_pocket ? screw_clear : insert_d, insert_tab_t);
+        if (nut_pocket) for (a = lug_angles) rotate(a)       // hex corners point along the tab, flats across it
             translate([lug_r, 0, insert_tab_t - (nut_h + 0.2)])
                 cylinder(d = (nut_af + 2 * nut_clear) / cos(30), h = nut_h + 0.2 + 1, $fn = 6);
     }
@@ -227,7 +227,7 @@ module assembly(gap = 0) {
 if (part == "back")          back_wall();
 else if (part == "surround") surround();
 else if (part == "collar")   collar();
-else if (part == "collar_nut_trap") collar(true);
+else if (part == "collar_heat_insert") collar(false);
 else if (part == "diffuser") diffuser();
 else if (part == "exploded") assembly(25);
 else                         assembly(0);
