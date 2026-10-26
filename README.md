@@ -6,6 +6,8 @@ Three support-free printed parts, an 88 mm **3D-printed diffuser disc** (so the 
 
 > **Set it once and forget it.** The panel is designed so you set the brightness a single time, during assembly, and never touch it again. The converter's dimming trim pot is sealed inside the cavity: there is **no access hole or screw hole to adjust it** once the back wall is bolted on, and changing it later means taking the panel apart. That's why the brightness is set during the test fit in [Assembly](#assembly) step 7, *before* you close it up. After that, vary your flats' exposure time or gain, not the panel.
 
+> **Not weatherproof.** The panel is not sealed. The parts are just bolted together, the wire slots are open, and the LED strip (a non-waterproof type), converter and solder joints are bare. Keep it dry and out of dew, rain and damp air, use it only while taking flats, and take it off the scope afterwards.
+
 ![Assembled panel](docs/images/assembled.png)
 
 A finished panel, lit and running from a 12 V power bank:
