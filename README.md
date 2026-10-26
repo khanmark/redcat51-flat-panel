@@ -319,3 +319,11 @@ docs/render_images.sh
 ```
 
 Needs OpenSCAD 2025 or newer (the script uses the manifold backend) and Python 3 with Pillow for the labels.
+
+---
+
+## License
+
+Copyright (c) 2026 khanmark.
+
+This project is licensed under the [Creative Commons Attribution-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-sa/4.0/) license (CC BY-SA 4.0); the full text is in [LICENSE](LICENSE). You may print, share and modify it, including for your own scopes, as long as you credit the original and share your changes under the same license.
