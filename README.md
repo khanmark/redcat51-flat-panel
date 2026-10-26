@@ -8,6 +8,10 @@ Three support-free printed parts, an 88 mm diffuser disc (**3D-printed, so the w
 
 ![Assembled panel](docs/images/assembled.png)
 
+A finished panel, lit and running from a 12 V power bank:
+
+<img src="docs/images/built.jpg" alt="A finished flat panel lit up, powered by a 12 V power bank" width="320">
+
 Contents: [How it works](#how-it-works) · [Bill of materials](#bill-of-materials) · [Optional components](#optional-components) · [Files](#files-in-this-repo) · [Printing](#printing) · [Assembly](#assembly) · [Using it](#using-it) · [Using and scaling the OpenSCAD file](#using-and-scaling-the-openscad-file) · [Limits of scaling up](#limits-of-scaling-up)
 
 ---
@@ -52,7 +56,7 @@ Full list with short Amazon links: **[bom/BOM.pdf](bom/BOM.pdf)** (source: [bom/
 | PLA+ filament, black + white | The back wall must be white. |
 | 3 x **M3x40** bolts, 3 x M3 hex nuts | From any M3 screw kit. |
 | Diffuser disc | Printed from [stl/printed-diffuser/](stl/printed-diffuser/). No purchase needed. |
-| 12 V power source | Not in the BOM. Use your rig's. |
+| 12 V power source | Not in the BOM. Use your rig's. A 12 V DC power bank works too (as in the photo above). |
 
 **Tools:** soldering iron, rosin-core solder, heat-shrink tubing, multimeter, small screwdriver (for the trim pot, assembly only).
 
