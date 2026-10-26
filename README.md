@@ -200,7 +200,9 @@ Do a dry fit of the printed parts and the diffuser before you wire anything.
 
 1. Slide the collar over the RedCat's dew shield until it stops against the internal lip.
 2. Plug the pigtail into 12 V. The brightness is already set (in assembly step 7) and can't be adjusted from outside, so there is nothing to turn.
-3. Take your flats, changing exposure time or gain per filter as needed, then slip the panel off.
+3. Take your flats, changing exposure time or gain per filter as needed, then slip the panel off and store it somewhere dry.
+
+**Not weatherproof:** the panel is not sealed, so keep it dry and out of dew, rain and damp air. Don't leave it on the scope outside, and use it only while taking flats.
 
 If the brightness turns out to be wrong for your setup, you have to unbolt the back wall and re-adjust the converter's trim pot (see [Assembly](#assembly) step 7).
 
