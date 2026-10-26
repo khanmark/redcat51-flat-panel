@@ -89,6 +89,7 @@ None of these are needed for a working panel.
 | **0.6 mm printed diffuser** | Use the standard 1.0 mm one. The thinner [optional/flat_panel_diffuser_0.6mm.stl](optional/flat_panel_diffuser_0.6mm.stl) fits the same surround. |
 | **M3 heat-set inserts** | Not needed: each bolt threads into a hex nut sitting in a pocket in the collar tab. If you prefer inserts, print [optional/flat_panel_collar_heat_insert.stl](optional/flat_panel_collar_heat_insert.stl) instead of the standard collar, melt an insert into each tab hole, and use the same M3x35 bolts. |
 | **COB strip-to-wire connectors**, 10 mm 2-pin | Solder the wires straight to the strip pads. They fit the same space. |
+| **Low-temp hot glue** | Holds the power lead against the side of the panel as strain relief (assembly step 10). Use tape or a cable tie instead; avoid hot glue from a standard-temperature gun, which can soften the PLA. |
 | **Soldering flux** | Helps solder stick. Rosin-core solder alone works. |
 | **Heat-shrink tubing** | Handy for insulating joints. Tape works in a pinch. |
 
@@ -187,6 +188,7 @@ Do a dry fit of the printed parts and the diffuser before you wire anything.
 8. **Close the back.** Seat the back wall's spigot ring into the surround, keeping wires clear of the lugs and the edge.
 9. **Bolt it together.** Push an **M3x35 bolt** through each lug from the back wall side and thread it into the nut sitting in the collar tab (the bolt pushes through the tape). No nut to hold. Tighten evenly, just snug - it's plastic.
    With the heat-insert collar: melt the inserts into the tab holes first; the M3x35 bolts then thread straight in, so no nuts or tape.
+10. **Optional: strain relief.** Fix the power lead to the side of the panel with a small dab of **low-temperature hot glue**, so the wire doesn't flop around and the pull is taken by the glue instead of the solder joints and thin wires inside. Leave a little slack between the glue and the panel's wire slot. **Careful: PLA softens at fairly low temperatures, so use a low-temp glue gun, keep the dab small, and don't hold the hot nozzle against the plastic.** A cable tie, a strip of tape or double-sided foam tape also works without any heat.
 
 ![Final assembly from the telescope side](docs/images/telescope_side.png)
 
