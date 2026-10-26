@@ -3,7 +3,7 @@
 // an M3 hex nut sitting in a pocket in the end of a collar tab (or into a heat-set insert, see collar_heat_insert).
 //
 // Print orientations (as modeled):
-//   back      - flat on bed, spigot up
+//   back      - flat on bed, spigot up (exported mirrored, see the bottom of this file)
 //   surround  - front face (diffuser recess) down
 //   collar    - flange down; M3 nut pocket in the free end of each tab
 //   collar_heat_insert - optional collar with plain tabs and holes sized for M3 heat-set inserts (insert_d); flange down
@@ -224,10 +224,13 @@ module assembly(gap = 0) {
     translate([0, 0, -surround_h - back_t - 2 * gap]) back_wall();
 }
 
-if (part == "back")          back_wall();
+// The collar and the back wall get flipped over relative to the surround when the panel is assembled, so
+// they are exported MIRRORED (y -> -y): that makes their outlines (lugs, wire-exit box) line up with the
+// surround's. The STLs in stl/ and optional/ are already mirrored; do not mirror them again in the slicer.
+if (part == "back")          mirror([0, 1, 0]) back_wall();
 else if (part == "surround") surround();
-else if (part == "collar")   collar();
-else if (part == "collar_heat_insert") collar(false);
+else if (part == "collar")   mirror([0, 1, 0]) collar();
+else if (part == "collar_heat_insert") mirror([0, 1, 0]) collar(false);
 else if (part == "diffuser") diffuser();
 else if (part == "exploded") assembly(25);
 else                         assembly(0);

@@ -131,6 +131,8 @@ All three parts print **without supports**, in the orientation they are modelled
 |:--:|:--:|:--:|
 | ![back](docs/images/part_back.png) | ![surround](docs/images/part_surround.png) | ![collar](docs/images/part_collar.png) |
 
+**The collar and back wall STLs are mirrored on purpose.** They get flipped over against the surround when you assemble, so they are exported mirrored (y to -y) so that the three lugs and the wire-exit box line up with the surround's. Print the STLs as they are and **don't mirror anything in your slicer**. If you regenerate them from the scad (`part = "collar"` or `"back"`), the scad already does this mirroring for you.
+
 ### Filament colours
 
 **The back wall must be white.** Its inside face is what reflects the LED light back toward the diffuser, so a dark back wall wastes light and makes the panel dimmer and less even.

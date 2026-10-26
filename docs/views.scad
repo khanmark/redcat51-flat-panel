@@ -80,10 +80,10 @@ if (view == "hero") {                       // like the original render: back wa
         color(c_surround) mirror([0, 0, 1]) surround();
         mirror([0, 0, 1]) { diffuser_disc(); led_strip_ring(); strip_connector(); buck_converter(); }
     }
-} else if (view == "back")           rotate([0, 0, 0]) color(c_back) back_wall();
+} else if (view == "back")           mirror([0, 1, 0]) color(c_back) back_wall();     // as printed (mirrored, see flat_panel.scad)
 else if (view == "surround")         rotate([180, 0, 0]) color(c_surround) surround();   // open (back) side up
 else if (view == "surround_front")   color(c_surround) surround();                       // front face up
-else if (view == "collar")           color(c_collar) collar();
+else if (view == "collar")           mirror([0, 1, 0]) color(c_collar) collar();       // as printed (mirrored)
 else if (view == "nut_detail") {                                  // pockets in the tab ends: one nut seated, one hovering
     color(c_collar) collar(true);
     rotate(210) translate([lug_r, 0, insert_tab_t - (nut_h + 0.2)]) nut();
