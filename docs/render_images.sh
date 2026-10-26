@@ -24,7 +24,7 @@ render   part_back         back            0,0,0,55,0,25,500
 render   part_surround     surround        0,0,0,50,0,25,500
 render   part_surround_front surround_front 0,0,0,50,0,25,500
 render   part_collar       collar          0,0,0,50,0,25,500
-render   part_diffuser     diffuser        0,0,0,50,0,25,500 -D diffuser_t=1.0
+render   part_diffuser     diffuser        0,0,0,50,0,25,500
 render   part_collar_nut_trap collar_nut_trap 0,0,0,40,0,25,500
 # close-up of the nut pockets (fixed camera, no --viewall)
 openscad --backend=manifold --render -o "$OUT/nut_trap_detail.png" --imgsize=1400,1000 \

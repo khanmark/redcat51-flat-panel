@@ -2,7 +2,7 @@
 
 A cheap, 3D-printed, slip-on **flat-field panel** for the William Optics RedCat 51 II (the same design also works for lenses with a similar front end if you scale it - see [Scaling it up](#using-and-scaling-the-openscad-file)).
 
-Three support-free printed parts, an 88 mm diffuser disc (**3D-printed, so the whole project can be printed** - or laser-cut acrylic if you prefer), a ring of 12 V LED strip, and a small buck converter that dials the brightness down to something a camera can use for flats. Everything is held together by three M3 bolts.
+Three support-free printed parts, an 88 mm **3D-printed diffuser disc** (so the whole project can be printed; a laser-cut acrylic disc fits too), a ring of 12 V LED strip, and a small buck converter that dials the brightness down to something a camera can use for flats. Everything is held together by three M3 bolts.
 
 > **Set it once and forget it.** The panel is designed so you set the brightness a single time, during assembly, and never touch it again. The converter's dimming trim pot is sealed inside the cavity: there is **no access hole or screw hole to adjust it** once the back wall is bolted on, and changing it later means taking the panel apart. That's why the brightness is set during the test fit in [Assembly](#assembly) step 7, *before* you close it up. After that, vary your flats' exposure time or gain, not the panel.
 
@@ -25,7 +25,7 @@ Part order, from the telescope side to the back:
 | # | Part | What it does |
 |---|------|--------------|
 | 1 | **Collar** | Slides over the RedCat dew shield (81 mm inside diameter, stops against an internal lip). Its flange clamps the diffuser. Three tabs carry the bolts' nuts. |
-| 2 | **Diffuser disc** | 88 mm disc. Print it 0.6 mm or 1.0 mm thick, or use 3 mm opal acrylic. Drops into the surround's front recess. |
+| 2 | **Diffuser disc** | 88 mm printed disc: a 1.0 mm thin centre with a raised rim that fills the recess. (A 3 mm opal acrylic disc fits the same surround.) Drops into the surround's front recess. |
 | 3 | **Surround** | Holds the diffuser, the baffle skirt, the LED ring, a channel for the strip connector, and a pocket for the buck converter. |
 | 4 | **Back wall** | Closes the cavity and the converter pocket. A thin spigot ring locates it in the surround. **Print it in white** - its inside face is the reflector that bounces the LED light toward the diffuser. |
 
@@ -55,7 +55,7 @@ Full list with short Amazon links: **[bom/BOM.pdf](bom/BOM.pdf)** (source: [bom/
 | 12 V barrel-plug pigtails, 2.1 x 5.5 mm | Plug into your existing 12 V supply. |
 | PLA+ filament, black + white | The back wall must be white. |
 | 3 x **M3x40** bolts, 3 x M3 hex nuts | From any M3 screw kit. |
-| Diffuser disc | Printed from [stl/printed-diffuser/](stl/printed-diffuser/). No purchase needed. |
+| Diffuser disc | Printed: [stl/flat_panel_diffuser.stl](stl/flat_panel_diffuser.stl). No purchase needed. |
 | 12 V power source | Not in the BOM. Use your rig's. A 12 V DC power bank works too (as in the photo above). |
 
 **Tools:** soldering iron, rosin-core solder, heat-shrink tubing, multimeter, small screwdriver (for the trim pot, assembly only).
@@ -85,8 +85,9 @@ None of these are needed for a working panel.
 
 | Optional item | Without it |
 |---------------|------------|
-| **Acrylic diffuser**, 88 mm x 3 mm opal | Use the printed diffuser. For acrylic, laser-cut [diffuser/diffuser_88mm.dxf](diffuser/diffuser_88mm.dxf) and print the standard `flat_panel_surround.stl` (3 mm recess). |
-| **Nut-trap collar** (M3x35 bolts) | Print `flat_panel_collar_nut_trap.stl` instead of the standard collar. Each M3 nut sits in a hex pocket on the surround side of the collar tab, so you use shorter **M3x35** bolts and there is no loose nut to hold at the tab end. Not test-printed yet. See [Nut-trap collar](#nut-trap-collar-optional). |
+| **Acrylic diffuser**, 88 mm x 3 mm opal | Use the printed diffuser. For acrylic, laser-cut [optional/acrylic_diffuser_88mm.dxf](optional/acrylic_diffuser_88mm.dxf). It fits the standard surround, nothing else changes. |
+| **0.6 mm printed diffuser** | Use the standard 1.0 mm one. The thinner [optional/flat_panel_diffuser_0.6mm.stl](optional/flat_panel_diffuser_0.6mm.stl) fits the same surround. |
+| **Nut-trap collar** (M3x35 bolts) | Print [optional/flat_panel_collar_nut_trap.stl](optional/flat_panel_collar_nut_trap.stl) instead of the standard collar. Each M3 nut sits in a hex pocket on the surround side of the collar tab, so you use shorter **M3x35** bolts and there is no loose nut to hold at the tab end. Not test-printed yet. See [Nut-trap collar](#nut-trap-collar-optional). |
 | **M3 heat-set inserts** | Not needed. Each M3x40 bolt goes through the back wall, surround lug and collar tab, and a hex nut on the tab end clamps it. With inserts, melt one into each collar tab hole and use M3x35 bolts. |
 | **COB strip-to-wire connectors**, 10 mm 2-pin | Solder the wires straight to the strip pads. They fit the same space. |
 | **Soldering flux** | Helps solder stick. Rosin-core solder alone works. |
@@ -97,15 +98,16 @@ None of these are needed for a working panel.
 ## Files in this repo
 
 ```
-scad/flat_panel.scad          Parametric OpenSCAD source (all three parts)
-stl/flat_panel_collar.stl     Ready-to-print parts, built with the default parameters
-stl/flat_panel_back.stl
-stl/flat_panel_collar_nut_trap.stl   Optional collar with M3 nut pockets (use M3x35 bolts)
-stl/flat_panel_surround.stl   Surround with a 3 mm diffuser recess (for the acrylic disc)
-stl/printed-diffuser/         3D-printed diffuser: pick ONE thickness (disc + its matching surround)
-    diffuser_0.6mm.stl      surround_for_0.6mm_diffuser.stl
-    diffuser_1.0mm.stl      surround_for_1.0mm_diffuser.stl
-diffuser/diffuser_88mm.dxf    88 mm circle for laser-cutting an acrylic diffuser (optional)
+scad/flat_panel.scad          Parametric OpenSCAD source (all parts)
+stl/                          The default build - print all four:
+    flat_panel_collar.stl
+    flat_panel_surround.stl
+    flat_panel_back.stl
+    flat_panel_diffuser.stl     printed diffuser, 1.0 mm centre + raised rim
+optional/                     Alternatives, none needed:
+    flat_panel_diffuser_0.6mm.stl     thinner printed diffuser (same surround)
+    flat_panel_collar_nut_trap.stl    collar with M3 nut pockets (M3x35 bolts)
+    acrylic_diffuser_88mm.dxf         88 mm circle for laser-cutting a 3 mm acrylic diffuser
 bom/BOM.pdf                   Bill of materials (PDF, short links)
 bom/bom.html                  BOM source
 docs/images/                  Pictures used in this README
@@ -125,7 +127,7 @@ All three parts print **without supports**, in the orientation they are modelled
 | Surround | Front face (the diffuser recess side) on the bed |
 | Collar | Flange on the bed, tube pointing up |
 | Nut-trap collar (optional) | Same: flange on the bed. The nut pockets open onto the bed |
-| Printed diffuser | Flat on the bed (white, solid) |
+| Printed diffuser | Flat (back) face on the bed, rim up (white, solid) |
 
 | Back wall | Surround (open side up for the picture; print it flipped) | Collar |
 |:--:|:--:|:--:|
@@ -142,20 +144,18 @@ The cavity walls of the surround reflect light in the same way, so light plastic
 
 ### Printed diffuser
 
-The diffuser is a plain 88 mm disc. Choose a thickness and print **both** files with that thickness, because the surround's recess depth matches the disc so the disc ends up flush with the front face and the collar flange clamps it:
-
-| Thickness | Disc | Matching surround |
-|-----------|------|-------------------|
-| 0.6 mm | [diffuser_0.6mm.stl](stl/printed-diffuser/diffuser_0.6mm.stl) | [surround_for_0.6mm_diffuser.stl](stl/printed-diffuser/surround_for_0.6mm_diffuser.stl) |
-| 1.0 mm | [diffuser_1.0mm.stl](stl/printed-diffuser/diffuser_1.0mm.stl) | [surround_for_1.0mm_diffuser.stl](stl/printed-diffuser/surround_for_1.0mm_diffuser.stl) |
+The default diffuser is printed: [stl/flat_panel_diffuser.stl](stl/flat_panel_diffuser.stl), an 88 mm disc with a **1.0 mm thin centre** that passes the light and a **raised rim** that fills the rest of the surround's 3 mm recess, so the collar flange still clamps it. The standard surround is the only surround you need.
 
 ![Printed diffuser disc](docs/images/part_diffuser.png)
 
-Print the disc flat on the bed, in white filament, solid (100 % infill - at these thicknesses it is only a few layers anyway). Do **not** also print the standard `flat_panel_surround.stl`; use the matching one from this table. A thicker disc diffuses more but passes less light, so if you find the panel too dim for your flats, try the thinner disc; if you can see the LED ring or hot spots, try the thicker one.
+* Print it **flat face down, rim up**, in white filament, solid (100 % infill; the centre is only a few layers). The flat face is the back (LED side) of the disc and the rim is its front face.
+* The rim sits under the collar flange, so it never blocks light.
+* **Thinner option:** [optional/flat_panel_diffuser_0.6mm.stl](optional/flat_panel_diffuser_0.6mm.stl) has a 0.6 mm centre. Expect it to pass more light but diffuse less. Neither thickness has been compared side by side in this repo, so treat that as a starting point and try both if your first panel looks too dim or too blotchy.
+* **Acrylic option:** a 3 mm opal acrylic disc fills the recess by itself and fits the same surround. Laser-cut [optional/acrylic_diffuser_88mm.dxf](optional/acrylic_diffuser_88mm.dxf).
 
 ### Nut-trap collar (optional)
 
-Print `flat_panel_collar_nut_trap.stl` **instead of** the standard collar to use **M3x35** bolts with the nut held in the collar.
+Print [optional/flat_panel_collar_nut_trap.stl](optional/flat_panel_collar_nut_trap.stl) **instead of** the standard collar to use **M3x35** bolts with the nut held in the collar.
 
 ![Nut pockets in the collar tabs](docs/images/nut_trap_detail_labeled.png)
 
@@ -166,7 +166,7 @@ Print `flat_panel_collar_nut_trap.stl` **instead of** the standard collar to use
 
 ### Fit check
 
-Check that the diffuser drops into the recess without forcing. If your disc (printed or acrylic) is a different thickness, set `diffuser_t` to it (and `diffuser_d` for the diameter) and re-export the surround.
+Check that the diffuser drops into the recess without forcing. If your disc is an acrylic disc of a different thickness than 3 mm, set `diffuser_t` to it (and `diffuser_d` for the diameter) and re-export the surround. The printed diffuser follows `diffuser_t` too, so re-export it as well.
 
 ---
 
@@ -174,11 +174,11 @@ Check that the diffuser drops into the recess without forcing. If your disc (pri
 
 Do a dry fit of the printed parts and the diffuser before you wire anything.
 
-1. **Print the parts and the diffuser.** Print the collar, back wall, and *either* the printed-diffuser pair (disc + its matching surround) *or* the standard surround with an acrylic disc. Clean any elephant's foot off the edges so the parts seat flat.
+1. **Print the parts.** Print everything in [stl/](stl/): collar, surround, back wall and diffuser (all four). Clean any elephant's foot off the edges so the parts seat flat.
 2. **Wire the converter.** Solder the pigtail's two leads to the converter's **IN+ / IN-** pads. Plug the pigtail into your 12 V supply and, with a multimeter on **OUT+ / OUT-**, check what it reads. These converters usually ship set to a very low output, so leave the trim pot alone for now (the real brightness is set in step 7). Unplug before continuing. Heat-shrink the joints.
 3. **Prepare the strip.** Cut about 30 cm of LED strip at a cut mark (roughly pi x the skirt's 93 mm outside diameter). Attach two wires (red = +, black = -) to the **start** of the strip with a COB clip connector, or solder them to the pads. Connect those wires to the converter's **OUT+ / OUT-** pads. Keep the wires long enough to run from the connector channel into the converter pocket through the side slot.
-4. **Seat the diffuser.** Lay the surround on the bench with its front face up and drop the diffuser disc into the recess - it rests on the 45-degree seat and should sit flush with the front face. Place the collar on top, flange down, lining up the three bolt lugs and the connector-box outline, so the flange clamps the disc's edge.
-   **Nut-trap collar:** build from the bottom instead. Stand the collar on its tube, flange face up, and drop an M3 nut into each pocket. Lay the diffuser on the flange, then lower the surround over it, front face down, lining up the lugs. The back then faces up already, so skip the flip in step 5.
+4. **Seat the diffuser.** Lay the surround on the bench with its front face up and drop the diffuser disc into the recess, **rim face up** (flat face down) - it rests on the 45-degree seat and should sit flush with the front face. Place the collar on top, flange down, lining up the three bolt lugs and the connector-box outline, so the flange clamps the disc's edge.
+   **Nut-trap collar:** build from the bottom instead. Stand the collar on its tube, flange face up, and drop an M3 nut into each pocket. Lay the diffuser on the flange, **rim face down**, then lower the surround over it, front face down, lining up the lugs. The back then faces up already, so skip the flip in step 5.
 5. **Flip the stack so the open back faces you** (not needed with the nut-trap build). Press the strip around the outside of the baffle skirt, standing on its edge on the front ring, with the **LEDs facing outward toward the cavity wall**. Drop the connector into its channel (it slides in from the open back and rests on the front ring).
 6. **Fit the converter.** Slide the buck converter into its pocket from the back, then feed its wires through the slots as shown in the picture above (strip wires through the side slot, DC input leads out through the slot at the far end of the pocket). Leave the DC leads long enough to reach your supply.
 7. **Test fit, and set the brightness now.** This is your only chance to set the dimming: once the back wall is bolted on, the trim pot can't be reached. Plug in the supply. **Don't be alarmed if you see no light at first:** the converter's output is set very low by default, so on your first power-up the strip will probably look off. Turn the trim pot up slowly (a small screwdriver, with the multimeter on the output if you like) until the strip comes on, then check that the diffuser glows evenly and fix any pinched wires. Then, with the back wall still off, slide the collar onto your scope, take short test exposures with your camera, and turn the converter's trim pot until the exposure is where you want it for flats, e.g. a histogram peak in the middle of the range at an exposure time you're happy with. Aim for a level that works across all your filters, since you'll fine-tune later with exposure time or gain. Unplug when you're done and don't touch the trim pot again. (If you'd rather have an externally adjustable dimmer, the back wall would need modifying; this design has no provision for one.)
@@ -220,14 +220,14 @@ part = "all"; // [back, surround, collar, diffuser, all, exploded]
 openscad -o stl/flat_panel_collar.stl   -D 'part="collar"'   scad/flat_panel.scad
 openscad -o stl/flat_panel_surround.stl -D 'part="surround"' scad/flat_panel.scad
 openscad -o stl/flat_panel_back.stl     -D 'part="back"'     scad/flat_panel.scad
-openscad -o stl/flat_panel_collar_nut_trap.stl -D 'part="collar_nut_trap"' scad/flat_panel.scad   # optional nut-trap collar
+openscad -o stl/flat_panel_diffuser.stl -D 'part="diffuser"' scad/flat_panel.scad
+openscad -o optional/flat_panel_collar_nut_trap.stl -D 'part="collar_nut_trap"' scad/flat_panel.scad   # optional nut-trap collar
 ```
 
-The printed diffuser needs the disc **and** a surround built with the same thickness:
+The thinner printed diffuser is the same part with a different centre thickness:
 
 ```bash
-openscad -o stl/printed-diffuser/diffuser_1.0mm.stl            -D 'part="diffuser"' -D diffuser_t=1.0 scad/flat_panel.scad
-openscad -o stl/printed-diffuser/surround_for_1.0mm_diffuser.stl -D 'part="surround"' -D diffuser_t=1.0 scad/flat_panel.scad
+openscad -o optional/flat_panel_diffuser_0.6mm.stl -D 'part="diffuser"' -D diffuser_center_t=0.6 scad/flat_panel.scad
 ```
 
 Any parameter can be overridden the same way, e.g. `-D collar_id=95 -D collar_depth=30`.
@@ -245,7 +245,9 @@ Defaults are for the RedCat 51 II. All lengths are millimetres.
 | | `flange_t` | 2.5 | Thickness of the collar flange that clamps the diffuser. |
 | Diffuser | `diffuser_d` | 88 | Diameter of the diffuser disc (printed or acrylic). |
 | | `diffuser_recess_d` | 88.5 | Recess it sits in (about 0.5 mm bigger). |
-| | `diffuser_t` | 3 | Disc thickness - the recess depth, and also the thickness of the printed `diffuser` part. **Measure your disc**, or set 0.6 / 1.0 for a printed one. |
+| | `diffuser_t` | 3 | Recess depth = disc thickness at its edge. A 3 mm acrylic disc fills it exactly; the printed diffuser's rim is built up to this height. **Measure an acrylic disc** and set this to match. |
+| | `diffuser_center_t` | 1.0 | Printed diffuser only: thickness of the thin centre. 1.0 is the default, 0.6 is the thinner option. |
+| | `diffuser_rim_w` | 4 | Printed diffuser only: width of the raised rim. Keep it under the collar flange (rim inner diameter above `lip_id`). |
 | | `seat_id` | 86 | Light opening; the disc rests on this ring (about 2 mm smaller than the disc). |
 | Cavity | `cavity_id` | 100 | Inside diameter of the LED chamber. |
 | | `cavity_depth` | 20 | Chamber depth. |
@@ -280,9 +282,9 @@ Steps:
 
 1. Measure the outside diameter of the end of your scope (dew shield or hood) the collar will slip over, and set `collar_id`.
 2. Set `lip_id` to `collar_id` - 3, then check it's larger than your optics' clear aperture.
-3. Choose `diffuser_d`, set the others from the table, and measure the real thickness of your disc into `diffuser_t`.
+3. Choose `diffuser_d`, set the others from the table. Keep `diffuser_t` at 3 for a printed diffuser or 3 mm acrylic, or set it to the thickness of your acrylic disc.
 4. Switch `part` to `all` and `exploded` and look for anything that touches or sticks out, then export each part.
-5. Export the `diffuser` part at the new `diffuser_d` (with the same `diffuser_t` you used for the surround), or, for acrylic, cut a disc at that diameter - [diffuser/diffuser_88mm.dxf](diffuser/diffuser_88mm.dxf) is just a circle; draw a new one at your diameter.
+5. Export the `diffuser` part at the new `diffuser_d` (with the same `diffuser_t` as the surround), or, for acrylic, cut a disc at that diameter - [optional/acrylic_diffuser_88mm.dxf](optional/acrylic_diffuser_88mm.dxf) is just a circle; draw a new one at your diameter. Check that `diffuser_rim_w` still leaves the rim inside `lip_id`.
 6. Cut your LED strip to roughly pi x (`skirt_id` + 2 x `skirt_t`).
 
 For example, a ~108 mm scope end (run on the command line, or type these values into the Customizer). The deeper cavity keeps the light even at this size (see below), and means M3x55 bolts:
@@ -329,7 +331,7 @@ What that means:
   * **Light output** drops to roughly 1/50 of the 88 mm panel for the same strip, so it may be too dim even at full converter output. You would want a denser strip or a second ring, which this design doesn't have.
   * **Printer size:** the parts would be about 322 x 329 mm, which won't fit a typical 220-256 mm bed. The surround and back wall alone are about 460 g and 310 g of PLA at 100 % infill.
   * **Bolts:** with that depth the bolt length is about 110 mm, so M3x110 bolts or threaded rod, not the M3x40 from the kit.
-  * **Diffuser:** a 0.6 or 1.0 mm printed disc will sag across 305 mm unsupported; use acrylic or add support.
+  * **Diffuser:** a 1.0 mm printed centre will sag across 305 mm even with the rim; use acrylic or add support.
   * **Cost:** roughly **\$15-20** of materials by the same per-unit maths as above: up to ~990 g of PLA (about \$11 at the BOM's price, less with normal infill), ~1 m of strip (~\$3), plus the converter, pigtail and wire (~\$2.50). Long bolts and a laser-cut 12-inch acrylic disc are extra and I haven't priced them.
 
 If you build a bigger one, take a test flat first: a panel that is bright at the rim and dim in the centre gives uneven illumination, which is exactly what flats are supposed to avoid.

@@ -7,7 +7,7 @@
 //   surround  - front face (diffuser recess) down
 //   collar    - flange down
 //   collar_nut_trap - optional collar with an M3 nut pocket in each tab (M3x35 bolts); flange down
-//   diffuser  - flat on the bed (optional 3D-printed disc; set diffuser_t to 0.6 or 1.0)
+//   diffuser  - flat (back) face on the bed, raised rim up: 3D-printed diffuser, thin centre + rim up to diffuser_t
 //
 // Assembly (front to back):
 //   collar flange -> diffuser disc (sits in surround's front recess) -> surround -> back wall
@@ -24,10 +24,12 @@ lip_id       = 78;    // stop lip - shield/barrel bottoms out here
 flange_t     = 2.5;
 
 /* [Diffuser] */
-diffuser_d        = 88;   // opal acrylic disc diameter
+diffuser_d        = 88;   // diffuser disc diameter
 diffuser_recess_d = 88.5; // recess for the disc
-diffuser_t        = 3;    // recess depth = disc thickness (flange clamps it); measure your disc and set this.
-                          // 3D-printed diffuser: set 0.6 or 1.0 here and export BOTH part="diffuser" and part="surround"
+diffuser_t        = 3;    // recess depth = disc thickness at its edge (the collar flange clamps it).
+                          // A 3 mm opal acrylic disc fills it exactly; the printed diffuser gets a raised rim instead.
+diffuser_center_t = 1.0;  // printed diffuser (part = "diffuser"): thickness of the thin light-passing centre, e.g. 1.0 or 0.6
+diffuser_rim_w    = 4;    // printed diffuser: width of the raised rim (keep it under the collar flange: > diffuser_d/2 - lip_id/2)
 seat_id           = 86;   // light opening; disc rests on this ring
 
 /* [Cavity] */
@@ -205,9 +207,15 @@ module collar(nut_trap = false) {
     }
 }
 
-// optional 3D-printed diffuser disc; its thickness is diffuser_t so it lands flush in the surround recess
+// 3D-printed diffuser: a thin centre (diffuser_center_t) lets the light through, and a raised rim up to
+// diffuser_t fills the rest of the recess so the collar flange still clamps the disc. The flat face is the
+// back (LED side); the rim is on the front face, under the flange. If diffuser_center_t >= diffuser_t it is a plain disc.
 module diffuser() {
-    cylinder(d = diffuser_d, h = diffuser_t);
+    cylinder(d = diffuser_d, h = min(diffuser_center_t, diffuser_t));
+    if (diffuser_center_t < diffuser_t) difference() {
+        cylinder(d = diffuser_d, h = diffuser_t);
+        translate([0, 0, -1]) cylinder(d = diffuser_d - 2 * diffuser_rim_w, h = diffuser_t + 2);
+    }
 }
 
 module assembly(gap = 0) {

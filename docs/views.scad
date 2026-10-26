@@ -14,7 +14,8 @@ c_parts    = "#e8590c";
 c_bolt     = "#b0b7c0";
 
 // ---- component stand-ins (visual only, sizes from the .scad parameters) ----
-module diffuser_disc()  color(c_diffuser, 0.75) cylinder(d = diffuser_d, h = diffuser_t - 0.1);
+// the printed diffuser in the surround frame (front face at z=0): rim on the front face, thin centre at the back
+module diffuser_disc()  color(c_diffuser, 0.8) translate([0, 0, diffuser_t - 0.05]) mirror([0, 0, 1]) diffuser();
 
 // LED strip stood on edge around the outside of the baffle skirt, resting on the front ring
 module led_strip_ring() color(c_led) translate([0, 0, front_t]) difference() {
