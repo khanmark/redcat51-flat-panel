@@ -6,6 +6,7 @@
 //   back      - flat on bed, spigot up
 //   surround  - front face (diffuser recess) down
 //   collar    - flange down
+//   collar_nut_trap - optional collar with an M3 nut pocket in each tab (M3x35 bolts); flange down
 //   diffuser  - flat on the bed (optional 3D-printed disc; set diffuser_t to 0.6 or 1.0)
 //
 // Assembly (front to back):
@@ -13,7 +14,7 @@
 //   Bolts go in from the back wall, through the surround lugs and the collar tabs; a hex nut on the
 //   end of each collar tab clamps the stack (or the bolt threads into a heat-set insert instead).
 
-part = "all"; // [back, surround, collar, diffuser, all, exploded]
+part = "all"; // [back, surround, collar, collar_nut_trap, diffuser, all, exploded]
 
 /* [Fit] */
 collar_id    = 81;    // matches the proven cover: 81 ID / 86 OD - slides over RedCat shield, inside Rokinon hood; no felt
@@ -69,16 +70,22 @@ insert_d     = 4.0;   // hole in the collar tabs: bolt pass-through when using h
 insert_tab_t = 8;
 lug_angles   = [90, 210, 330];
 
+/* [Nut-trap collar] optional: a hex nut sits in a pocket on the surround side of each collar tab */
+nut_af       = 5.5;   // M3 nut, across flats
+nut_h        = 2.4;   // M3 nut thickness
+nut_clear    = 0.2;   // extra clearance per side for the pocket (raise it if your nuts will not drop in)
+nut_tab_d    = 10;    // collar tab width in this version (wider than lug_d so the pocket keeps walls)
+
 $fn = 180;
 
 outer_d    = cavity_id + 2 * wall;          // 105
 lug_r      = outer_d / 2 + lug_d / 2 - 1;   // 55.5
 surround_h = front_t + cavity_depth;        // 24
 
-module lug_pads(h) {
+module lug_pads(h, d = lug_d) {
     for (a = lug_angles) rotate(a) hull() {
-        translate([lug_r, 0, 0]) cylinder(d = lug_d, h = h);
-        translate([outer_d / 2 - 5, 0, 0]) cylinder(d = lug_d, h = h);
+        translate([lug_r, 0, 0]) cylinder(d = d, h = h);
+        translate([outer_d / 2 - 5, 0, 0]) cylinder(d = d, h = h);
     }
 }
 
@@ -179,17 +186,22 @@ module surround() {
     }
 }
 
-module collar() {
+// nut_trap = true: M3 nut pockets open on the flange face (the face that touches the surround), so the
+// surround's lug closes each pocket and holds the nut; the bolt (M3x35) threads into the captive nut.
+module collar(nut_trap = false) {
     difference() {
         union() {
             cylinder(d = outer_d, h = flange_t);
             side_body(flange_t);   // match the surround's outline
-            lug_pads(insert_tab_t);
+            lug_pads(insert_tab_t, nut_trap ? nut_tab_d : lug_d);
             cylinder(d = collar_id + 2 * wall, h = flange_t + collar_depth);
         }
         translate([0, 0, -1]) cylinder(d = lip_id, h = 100);
         translate([0, 0, flange_t]) cylinder(d = collar_id, h = 100);
-        lug_holes(insert_d, insert_tab_t);
+        lug_holes(nut_trap ? screw_clear : insert_d, insert_tab_t);
+        if (nut_trap) for (a = lug_angles) rotate(a)       // hex corners point along the tab, flats across it
+            translate([lug_r, 0, -1])
+                cylinder(d = (nut_af + 2 * nut_clear) / cos(30), h = nut_h + 0.2 + 1, $fn = 6);
     }
 }
 
@@ -207,6 +219,7 @@ module assembly(gap = 0) {
 if (part == "back")          back_wall();
 else if (part == "surround") surround();
 else if (part == "collar")   collar();
+else if (part == "collar_nut_trap") collar(true);
 else if (part == "diffuser") diffuser();
 else if (part == "exploded") assembly(25);
 else                         assembly(0);
