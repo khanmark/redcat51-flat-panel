@@ -6,7 +6,7 @@
 //   back      - flat on bed, spigot up
 //   surround  - front face (diffuser recess) down
 //   collar    - flange down
-//   collar_nut_trap - optional collar with an M3 nut pocket in each tab (M3x35 bolts); flange down
+//   collar_nut_trap - optional collar with an M3 nut pocket in the free end of each tab (M3x35 bolts); flange down
 //   diffuser  - flat (back) face on the bed, raised rim up: 3D-printed diffuser, thin centre + rim up to diffuser_t
 //
 // Assembly (front to back):
@@ -72,7 +72,7 @@ insert_d     = 4.0;   // hole in the collar tabs: bolt pass-through when using h
 insert_tab_t = 8;
 lug_angles   = [90, 210, 330];
 
-/* [Nut-trap collar] optional: a hex nut sits in a pocket on the surround side of each collar tab */
+/* [Nut-trap collar] optional: a hex nut sits in a pocket in the free (scope-side) end of each collar tab */
 nut_af       = 5.5;   // M3 nut, across flats
 nut_h        = 2.4;   // M3 nut thickness
 nut_clear    = 0.2;   // extra clearance per side for the pocket (raise it if your nuts will not drop in)
@@ -188,8 +188,8 @@ module surround() {
     }
 }
 
-// nut_trap = true: M3 nut pockets open on the flange face (the face that touches the surround), so the
-// surround's lug closes each pocket and holds the nut; the bolt (M3x35) threads into the captive nut.
+// nut_trap = true: an M3 nut pocket in the free end of each tab, open at the top as printed (flange down),
+// so the nut drops in from above. The bolt (M3x35: 3 back wall + 24 surround + 8 tab) just reaches through the nut.
 module collar(nut_trap = false) {
     difference() {
         union() {
@@ -202,7 +202,7 @@ module collar(nut_trap = false) {
         translate([0, 0, flange_t]) cylinder(d = collar_id, h = 100);
         lug_holes(nut_trap ? screw_clear : insert_d, insert_tab_t);
         if (nut_trap) for (a = lug_angles) rotate(a)       // hex corners point along the tab, flats across it
-            translate([lug_r, 0, -1])
+            translate([lug_r, 0, insert_tab_t - (nut_h + 0.2)])
                 cylinder(d = (nut_af + 2 * nut_clear) / cos(30), h = nut_h + 0.2 + 1, $fn = 6);
     }
 }

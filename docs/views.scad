@@ -62,14 +62,6 @@ module hardware(gap = 0, bolt_len = cavity_depth + 20) for (a = lug_angles) rota
     translate([0, 0, insert_tab_t]) nut();
 }
 
-// nut-trap build: M3x35 bolt, nut sitting in the pocket on the surround side of the collar tab
-module hardware_nut_trap() for (a = lug_angles) rotate(a) translate([lug_r, 0, 0]) {
-    z_face = -surround_h - back_t;
-    color(c_bolt) translate([0, 0, z_face - 3]) cylinder(d = 5.5, h = 3, $fn = 24);
-    color(c_bolt) translate([0, 0, z_face]) cylinder(d = 3, h = back_t + surround_h + insert_tab_t, $fn = 24);
-    translate([0, 0, 0.1]) nut();
-}
-
 if (view == "hero") {                       // like the original render: back wall up, collar down
     rotate([180, 0, 0]) parts_assembled(0, false);
 } else if (view == "front") {               // from the telescope side: collar flange facing the viewer
@@ -92,12 +84,10 @@ if (view == "hero") {                       // like the original render: back wa
 else if (view == "surround")         rotate([180, 0, 0]) color(c_surround) surround();   // open (back) side up
 else if (view == "surround_front")   color(c_surround) surround();                       // front face up
 else if (view == "collar")           color(c_collar) collar();
-else if (view == "collar_nut_trap")  rotate([180, 0, 0]) color(c_collar) collar(true);   // flange face up: pockets visible
-else if (view == "nut_detail") {                                                            // pockets, one nut seated, one hovering
-    rotate([180, 0, 0]) {
-        color(c_collar) collar(true);
-        rotate(210) translate([lug_r, 0, 0.1]) nut();
-        rotate(90)  translate([lug_r, 0, -9])  nut();
-    }
+else if (view == "collar_nut_trap")  color(c_collar) collar(true);
+else if (view == "nut_detail") {                                  // pockets in the tab ends: one nut seated, one hovering
+    color(c_collar) collar(true);
+    rotate(210) translate([lug_r, 0, insert_tab_t - (nut_h + 0.2)]) nut();
+    rotate(330) translate([lug_r, 0, insert_tab_t + 7]) nut();
 }
 else if (view == "diffuser")         color(c_diffuser) diffuser();
