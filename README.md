@@ -4,7 +4,7 @@ A cheap, 3D-printed, slip-on **flat-field panel** for the William Optics RedCat 
 
 Four support-free printed parts (collar, surround, back wall and an 88 mm **printed diffuser disc**), a ring of 12 V LED strip, and a small buck converter that dials the brightness down to something a camera can use for flats. Three M3 bolts and nuts hold it together.
 
-> **Set it once and forget it.** You set the brightness a single time, during assembly, and never touch it again. The converter's dimming trim pot is sealed inside the cavity: there is **no access hole** to adjust it once the back wall is bolted on, and changing it later means taking the panel apart. That's why the brightness is set during the test fit in [Assembly](#assembly) step 7, before you close it up. After that, vary your flats' exposure time or gain, not the panel. (An adjustable version is on the [To do](#to-do) list.)
+> **Set it once and forget it.** You set the brightness once, during assembly ([step 7](#assembly)). There is **no access hole** to the converter's trim pot once the back wall is bolted on, so changing it later means taking the panel apart. After that, vary your flats' exposure time or gain, not the panel. (An adjustable version is on the [To do](#to-do) list.)
 
 > **Not weatherproof.** The panel is not sealed. The parts are just bolted together, the wire slots are open, and the LED strip (a non-waterproof type), converter and solder joints are bare. Keep it dry and out of dew, rain and damp air, use it only while taking flats, and take it off the scope afterwards.
 
@@ -51,7 +51,7 @@ Full list with short Amazon links: **[bom/BOM.pdf](bom/BOM.pdf)** (source: [bom/
 |------|-------|
 | 22 AWG solid hook-up wire, red + black | |
 | 12 V LED strip, SMD 2835, natural white 4500 K, 10 mm wide | About 30 cm used. Non-waterproof is fine. |
-| MP1584EN buck converter | 1 of the 8-pack. Its trim pot sets the brightness once, during assembly. |
+| MP1584EN buck converter | 1 of the 8-pack. Its trim pot sets the brightness. |
 | 12 V barrel-plug pigtails, 2.1 x 5.5 mm | Plug into your existing 12 V supply. |
 | PLA+ filament, black + white | The back wall must be white. |
 | 3 x **M3x35** bolts, 3 x M3 hex nuts | From any M3 screw kit. |
@@ -75,7 +75,7 @@ The BOM shows pack prices. One panel uses a slice of each pack:
 | M3 bolts + nuts | 3 + 3 | ~\$0.15 |
 | **Total** | | **about \$5** |
 
-Buying the packs as listed in the BOM costs **\$77.73**. Single-item retail prices, shipping and tax are not included.
+Buying the packs as listed in the BOM costs **\$77.73**.
 
 ---
 
@@ -109,11 +109,11 @@ All four parts print **without supports**, in the orientation they are modelled 
 | Collar | Flange on the bed, tube pointing up. The nut pockets open upward, so no supports |
 | Diffuser | Flat (back) face on the bed, rim up (white, solid) |
 
-| Back wall | Surround (open side up for the picture; print it flipped) | Collar |
+| Back wall | Surround (shown from its open side) | Collar |
 |:--:|:--:|:--:|
 | ![back](docs/images/part_back.png) | ![surround](docs/images/part_surround.png) | ![collar](docs/images/part_collar.png) |
 
-**The collar and back wall STLs are mirrored on purpose.** They get flipped over against the surround when you assemble, so they are exported mirrored (y to -y) so that the three lugs and the wire-exit box line up with the surround's. Print the STLs as they are and **don't mirror anything in your slicer**. If you regenerate them from the scad, it does the mirroring for you.
+**Print every STL in its original orientation**, as it opens in your slicer. Don't flip, rotate or mirror it.
 
 ### Filament colours
 
@@ -154,14 +154,14 @@ Do a dry fit of the printed parts and the diffuser before you wire anything.
 **Wire you will need:** between the buck converter (the puck) and the LED strip you need **1 to 2 inches (25-50 mm) of hook-up wire**, enough to run from the connector channel into the converter pocket through the side slot (step 3). The leads from the converter to your 12 V supply must be long enough to reach it (step 2).
 
 1. **Print the parts.** Print the four parts in [stl/](stl/): collar, surround, back wall and diffuser. Clean any elephant's foot off the edges so the parts seat flat.
-2. **Wire the converter.** Solder the pigtail's two leads to the converter's **IN+ / IN-** pads. Plug the pigtail into your 12 V supply and, with a multimeter on **OUT+ / OUT-**, check what it reads. These converters usually ship set to a very low output, so leave the trim pot alone for now (the real brightness is set in step 7). Unplug before continuing. Heat-shrink the joints.
+2. **Wire the converter.** Solder the pigtail's two leads to the converter's **IN+ / IN-** pads. Plug the pigtail into your 12 V supply and, with a multimeter on **OUT+ / OUT-**, check what it reads. These converters usually ship set to a very low output, so leave the trim pot alone for now. Unplug before continuing. Heat-shrink the joints.
    **If the pigtail won't reach your 12 V port:** solder an extension of the hook-up wire (red +, black -) between the pigtail and the converter's **IN+ / IN-** pads, long enough to reach the port with some slack. Check which pigtail lead is + with the multimeter first (the barrel's centre pin is usually +), and heat-shrink each joint. Do this now, before the converter goes into its pocket.
 3. **Prepare the strip.** Cut about 30 cm of LED strip at a cut mark (roughly pi x the skirt's 93 mm outside diameter). Solder two wires (red = +, black = -) to the pads at the **start** of the strip, and heat-shrink or tape the joints. Connect the other ends to the converter's **OUT+ / OUT-** pads. **Leave 1 to 2 inches (25-50 mm) of wire between the strip and the converter.**
 4. **Seat the diffuser.** Lay the surround on the bench with its front face up and drop the diffuser disc into the recess, **rim face up** (flat face down) - it rests on the 45-degree seat and should sit flush with the front face. Place the collar on top, flange down, lining up the three bolt lugs and the connector-box outline, so the flange clamps the disc's edge.
    **Nuts:** drop an M3 nut into the pocket in each collar tab end first, and hold it there with a bit of tape or poster putty until the bolts are in.
-5. **Flip the stack so the open back faces you.** Press the strip around the outside of the baffle skirt, standing on its edge on the front ring, with the **LEDs facing outward toward the cavity wall**. Drop the soldered end of the strip into its channel (it slides in from the open back and rests on the front ring).
+5. **Flip the stack so the open back faces you.** Press the strip around the outside of the baffle skirt, standing on its edge on the front ring, with the **LEDs facing outward toward the cavity wall**. The strip has a self-adhesive back covered by a removable backing: **peel the backing off if you want the strip to stick to the surround**; otherwise leave it on. Drop the soldered end of the strip into its channel (it slides in from the open back and rests on the front ring).
 6. **Fit the converter.** Slide the buck converter into its pocket from the back, then feed its wires through the slots as shown in the picture above (strip wires through the side slot, DC input leads out through the slot at the far end of the pocket). Leave the DC leads long enough to reach your supply (extend them as in step 2 if not).
-7. **Test fit, and set the brightness now.** This is your only chance to set the dimming: once the back wall is bolted on, the trim pot can't be reached. Plug in the supply. **Don't be alarmed if you see no light at first:** the converter's output is set very low by default, so on your first power-up the strip will probably look off. Turn the trim pot up slowly (a small screwdriver, with the multimeter on the output if you like) until the strip comes on, then check that the diffuser glows evenly and fix any pinched wires. Then, with the back wall still off, slide the collar onto your scope, take short test exposures with your camera, and turn the trim pot until the exposure is where you want it for flats, e.g. a histogram peak in the middle of the range at an exposure time you're happy with. Aim for a level that works across all your filters, since you'll fine-tune later with exposure time or gain. Unplug when you're done and don't touch the trim pot again.
+7. **Test fit and set the brightness.** Plug in the supply. **Don't be alarmed if you see no light at first:** the converter's output is set very low by default, so on your first power-up the strip will probably look off. Turn the trim pot up slowly (a small screwdriver, with the multimeter on the output if you like) until the strip comes on, then check that the diffuser glows evenly and fix any pinched wires. Then, with the back wall still off, slide the collar onto your scope, take short test exposures with your camera, and turn the trim pot until the exposure is where you want it for flats, e.g. a histogram peak in the middle of the range at an exposure time you're happy with. Aim for a level that works across all your filters, since you'll fine-tune later with exposure time or gain. Unplug when you're done.
 8. **Close the back.** Seat the back wall's spigot ring into the surround, keeping wires clear of the lugs and the edge.
 9. **Bolt it together.** Push an **M3x35 bolt** through each lug from the back wall side and thread it into the nut sitting in the collar tab (the bolt pushes through the tape). Tighten evenly, just snug - it's plastic.
 
@@ -172,12 +172,12 @@ Do a dry fit of the printed parts and the diffuser before you wire anything.
 ## Using it
 
 1. Slide the collar over the RedCat's dew shield until it stops against the internal lip.
-2. Plug the pigtail into 12 V. The brightness is already set (in assembly step 7) and can't be adjusted from outside, so there is nothing to turn.
+2. Plug the pigtail into 12 V.
 3. Take your flats, changing exposure time or gain per filter as needed, then slip the panel off and store it somewhere dry.
 
 **Not weatherproof:** the panel is not sealed, so keep it dry and out of dew, rain and damp air. Don't leave it on the scope outside, and use it only while taking flats.
 
-If the brightness turns out to be wrong for your setup, you have to unbolt the back wall and re-adjust the converter's trim pot (see [Assembly](#assembly) step 7).
+If the brightness is wrong for your setup, unbolt the back wall and re-adjust the trim pot (assembly step 7).
 
 ---
 
@@ -227,7 +227,7 @@ scad/export_stls.sh
 
 This rewrites everything in `stl/` and `optional/`. To keep the shipped STLs, give it a folder and add your own settings after `--`, for example `scad/export_stls.sh my_build -- -D diffuser_d=89` (it writes `my_build/stl` and `my_build/optional`).
 
-**In the OpenSCAD GUI:** open the file, open the Customizer (Window menu), and pick a part from the `part` drop-down. `all` shows it assembled, `exploded` shows how it fits together. Press F6 to render, then File > Export > STL. The collar and back wall come out mirrored on purpose (see [Printing](#printing)).
+**In the OpenSCAD GUI:** open the file, open the Customizer (Window menu), and pick a part from the `part` drop-down. `all` shows it assembled, `exploded` shows how it fits together. Press F6 to render, then File > Export > STL. The exported parts are already in their print orientation.
 
 ### Settings
 
