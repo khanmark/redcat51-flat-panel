@@ -1,81 +1,80 @@
-// DIY slip-on flat panel for RedCat 51 / Rokinon 135
-// Three support-free parts (plus a printed diffuser) held together by 3x M3x35 bolts. Each bolt threads into
-// an M3 hex nut sitting in a pocket in the end of a collar tab (or into a heat-set insert, see collar_heat_insert).
+// Slip-on flat-field panel for the William Optics RedCat 51 II.
 //
-// Print orientations (as modeled):
-//   back      - flat on bed, spigot up (exported mirrored, see the bottom of this file)
-//   surround  - front face (diffuser recess) down
-//   collar    - flange down; M3 nut pocket in the free end of each tab
-//   collar_heat_insert - optional collar with plain tabs and holes sized for M3 heat-set inserts (insert_d); flange down
-//   diffuser  - flat (back) face on the bed, raised rim up: 3D-printed diffuser, thin centre + rim up to diffuser_t
+// QUICK START: pick a part below, render (F6) and export (File > Export > STL).
+// Or run scad/export_stls.sh to export every STL in one go. For a different scope, change only
+// collar_id and diffuser_d (see the README appendix); everything else follows from those two.
 //
-// Assembly (front to back):
-//   collar flange -> diffuser disc (sits in surround's front recess) -> surround -> back wall
-//   Bolts go in from the back wall, through the surround lugs and the collar tabs, into the nuts.
+// Print orientations (as modelled, no supports):
+//   back       - flat on the bed, spigot up. Print in WHITE (exported mirrored, see the bottom of this file)
+//   surround   - front face (diffuser recess) down
+//   collar     - flange down; an M3 nut pocket in the free end of each tab (exported mirrored)
+//   diffuser   - flat face on the bed, rim up
+//   collar_heat_insert - optional collar for M3 heat-set inserts instead of nuts (exported mirrored)
+//
+// Assembly, front to back: collar flange -> diffuser (in the surround's front recess) -> surround -> back wall.
+// Three M3x35 bolts go in from the back wall, through the surround lugs and collar tabs, into the nuts.
 
-part = "all"; // [back, surround, collar, collar_heat_insert, diffuser, all, exploded]
+part = "all"; // [all, exploded, collar, surround, back, diffuser, collar_heat_insert]
 
-/* [Fit] */
-collar_id    = 81;    // matches the proven cover: 81 ID / 86 OD - slides over RedCat shield, inside Rokinon hood; no felt
-collar_depth = 25;
-wall         = 2.5;
-lip_id       = 78;    // stop lip - shield/barrel bottoms out here
-flange_t     = 2.5;
+/* [Fit to your scope] */
+collar_id    = 81;    // inside diameter of the slip-on collar: measure your scope's dew shield and add about 1 mm
+collar_depth = 25;    // how far the collar slides on
 
 /* [Diffuser] */
 diffuser_d        = 88;   // diffuser disc diameter
-diffuser_recess_d = 88.5; // recess for the disc
-diffuser_t        = 3;    // recess depth = disc thickness at its edge (the collar flange clamps it).
-                          // A 3 mm opal acrylic disc fills it exactly; the printed diffuser gets a raised rim instead.
-diffuser_center_t = 1.0;  // printed diffuser (part = "diffuser"): thickness of the thin light-passing centre, e.g. 1.0 or 0.6
-diffuser_rim_w    = 4;    // printed diffuser: width of the raised rim (keep it under the collar flange: > diffuser_d/2 - lip_id/2)
-seat_id           = 86;   // light opening; disc rests on this ring
+diffuser_t        = 3;    // recess depth = disc thickness at its edge (the collar flange clamps it)
+diffuser_center_t = 1.0;  // thickness of the thin light-passing centre (the optional thinner diffuser uses 0.6)
+diffuser_rim_w    = 4;    // width of the raised rim (keep it under the collar flange: > diffuser_d/2 - lip_id/2)
 
 /* [Cavity] */
-cavity_id    = 100;
-cavity_depth = 20;
-front_t      = 4;     // front annulus thickness (includes diffuser recess)
-skirt_id     = 90;    // baffle skirt hides LEDs from the diffuser
-skirt_t      = 1.5;
-skirt_len    = 10;
+cavity_depth = 20;    // LED chamber depth. Deeper keeps bigger panels even (see the README appendix)
 
-/* [Back wall] */
-back_t       = 3;
-spigot_h     = 2;
+/* [Advanced: the defaults fit the parts in the BOM] */
+wall         = 2.5;   // wall thickness of the collar and surround
+flange_t     = 2.5;   // collar flange that clamps the diffuser
+front_t      = 4;     // front ring thickness (includes the diffuser recess)
+skirt_t      = 1.5;   // baffle skirt thickness (the skirt hides the LEDs from the diffuser)
+back_t       = 3;     // back wall plate
+spigot_h     = 2;     // locating ring on the back wall
 spigot_w     = 2;
 spigot_clear = 0.2;   // per side
-
-/* [Wire exit] - open slot through the side of the connector box, so wires leave the connector straight */
-wire_angle   = 140;   // box + pocket assembly position, rotated to keep the longer pocket clear of the 210-degree lug
+// Wire exit: an open slot through the side of the connector box, so the wires leave the connector straight
+wire_angle   = 140;   // where around the circle the connector box and converter pocket sit
 slot_w       = 4;     // radial width of the connector-to-converter slot
 dc_slot_w    = 3;     // DC lead exit slot in the far end of the converter pocket
-
-/* [Strip connector] - solderless strip-to-wire clip; slides down a channel from the open back */
+// Strip connector: a solderless clip that slides down a channel from the open back (a soldered joint fits too)
 conn_w       = 11.5;  // across the strip (axial)
 conn_l       = 13.5;  // along the strip (tangential)
 conn_t       = 4.2;   // thickness (radial)
 conn_clear   = 0.5;
-
-/* [Buck converter pocket] - outside the main wall, next to the side slot; slides in from the back, back wall seals it */
+// Buck converter ("puck") pocket: outside the main wall, next to the side slot; slides in from the back
 puck_l       = 25.5;  // along the wall
 puck_w       = 17;    // front-to-back
 puck_t       = 4.5;   // thickness
 puck_clear   = 0.5;
 puck_clear_l = 4;     // extra room along the wall (per end) for leads and fingers
 puck_wall    = 1.6;
-
-/* [Fasteners] */
+// Fasteners
 lug_d        = 8;
 screw_clear  = 3.4;
-insert_d     = 4.0;   // heat-insert collar only: hole in the tabs - check your heat-set insert's recommended hole size
+insert_d     = 4.0;   // heat-insert collar only: tab hole size, check your insert's recommended hole
 insert_tab_t = 8;
 lug_angles   = [90, 210, 330];
-
-/* [Nut pockets] a hex nut sits in a pocket in the free (scope-side) end of each collar tab */
+// Nut pockets: a hex nut sits in a pocket in the free (scope-side) end of each collar tab
 nut_af       = 5.5;   // M3 nut, across flats
 nut_h        = 2.4;   // M3 nut thickness
-nut_clear    = 0.2;   // extra clearance per side for the pocket (raise it if your nuts will not drop in)
+nut_clear    = 0.2;   // extra clearance per side (raise it if your nuts will not drop in)
 nut_tab_d    = 10;    // collar tab width with nut pockets (wider than lug_d so the pocket keeps walls)
+
+/* [Hidden] */
+// Worked out from collar_id, diffuser_d and cavity_depth. They are not Customizer knobs, but you can still
+// override any of them from the command line, e.g. -D skirt_len=17
+lip_id            = collar_id - 3;        // internal stop lip: the scope bottoms out here (must clear your optics)
+diffuser_recess_d = diffuser_d + 0.5;     // recess the disc sits in
+seat_id           = diffuser_d - 2;       // light opening; the disc rests on this ring
+skirt_id          = diffuser_d + 2;
+cavity_id         = diffuser_d + 12;      // room for the skirt, LED strip and its wall
+skirt_len         = cavity_depth / 2;     // never less than your strip width (10 mm)
 
 $fn = 180;
 

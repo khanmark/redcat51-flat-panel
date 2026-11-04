@@ -29,11 +29,11 @@ render   part_diffuser     diffuser        0,0,0,50,0,25,500
 openscad --backend=manifold --render -o "$OUT/nut_pocket_detail.png" --imgsize=1400,1000 \
     --camera=44,-26,8,58,0,10,120 --projection=p --colorscheme=Tomorrow \
     -D 'view="nut_detail"' .build/views.scad
-# The same model scaled up for a ~120 mm-diffuser scope (see README, "Scaling it up")
+# The same model scaled up for a ~120 mm-diffuser scope (see the README appendix)
 render   scaled_example    hero            0,0,0,60,0,25,500 \
-    -D collar_id=108 -D lip_id=105 -D diffuser_d=118 -D diffuser_recess_d=118.5 -D seat_id=116 -D skirt_id=120 -D cavity_id=130 -D cavity_depth=35 -D skirt_len=17
+    -D collar_id=108 -D diffuser_d=118 -D cavity_depth=35
 render   scaled_example_exploded exploded  0,0,0,65,0,30,500 \
-    -D collar_id=108 -D lip_id=105 -D diffuser_d=118 -D diffuser_recess_d=118.5 -D seat_id=116 -D skirt_id=120 -D cavity_id=130 -D cavity_depth=35 -D skirt_len=17
+    -D collar_id=108 -D diffuser_d=118 -D cavity_depth=35
 python3 -I annotate.py
 rm -rf .build
 echo "images written to docs/$OUT"
