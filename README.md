@@ -57,8 +57,6 @@ Full list with short Amazon links: **[bom/BOM.pdf](bom/BOM.pdf)** (source: [bom/
 | 3 x **M3x35** bolts, 3 x M3 hex nuts | From any M3 screw kit. |
 | 12 V power source | Not in the BOM. Use your rig's. A 12 V DC power bank works too (as in the photo above). |
 
-The diffuser is printed ([stl/flat_panel_diffuser.stl](stl/flat_panel_diffuser.stl)), so there is nothing to buy for it.
-
 **Tools:** soldering iron, rosin-core solder, heat-shrink tubing, multimeter, small screwdriver (for the trim pot, assembly only).
 
 ### Cost of one panel
@@ -67,7 +65,7 @@ The BOM shows pack prices. One panel uses a slice of each pack:
 
 | Material | Used | Cost |
 |----------|------|------|
-| PLA+ (all parts, printed diffuser included) | up to ~130 g | ~\$1.50 |
+| PLA+ (all four parts) | up to ~130 g | ~\$1.50 |
 | LED strip | ~0.3 m of 5 m | ~\$0.90 |
 | Buck converter | 1 of 8 | ~\$0.95 |
 | DC pigtail pair | 1 of 5 | ~\$1.20 |
@@ -131,6 +129,7 @@ An 88 mm disc with a **1.0 mm thin centre** that passes the light and a **raised
 * Print it **flat face down, rim up**, in white filament, solid (100 % infill; the centre is only a few layers). The flat face is the back (LED side) of the disc and the rim is its front face.
 * The rim sits under the collar flange, so it never blocks light.
 * Check that it drops into the recess without forcing. If it is tight or loose on your printer, change `diffuser_d` in the scad and re-export the surround and the diffuser.
+* **If you have trouble printing the thin centre,** cut an 88 mm disc from 3 mm opal (milky) acrylic instead, using [optional/acrylic_diffuser_88mm.dxf](optional/acrylic_diffuser_88mm.dxf). It fits the same surround.
 
 ### Nut pockets in the collar
 
