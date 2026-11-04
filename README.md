@@ -75,8 +75,6 @@ The BOM shows pack prices. One panel uses a slice of each pack:
 | M3 bolts + nuts | 3 + 3 | ~\$0.15 |
 | **Total** | | **about \$5** |
 
-Buying the packs as listed in the BOM costs **\$77.73**.
-
 ---
 
 ## Files in this repo
