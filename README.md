@@ -1,10 +1,10 @@
 # RedCat 51 II Flat Panel
 
-A cheap, 3D-printed, slip-on **flat-field panel** for the William Optics RedCat 51 II. (A scaled-up version for other scopes is in the [appendix](#appendix-scaling-to-other-scopes-unverified); it is unverified.)
+A cheap, 3D-printed, slip-on **flat-field panel** for the William Optics RedCat 51 II. (A scaled-up version for other scopes is possible and how it can be accomplished is in the [appendix](#appendix-scaling-to-other-scopes-unverified).)
 
 Four support-free printed parts (collar, surround, back wall and an 88 mm **printed diffuser disc**), a ring of 12 V LED strip, and a small buck converter that dials the brightness down to something a camera can use for flats. Three M3 bolts and nuts hold it together.
 
-> **Set it once and forget it.** You set the brightness once, during assembly ([step 7](#assembly)). There is **no access hole** to the converter's trim pot once the back wall is bolted on, so changing it later means taking the panel apart. After that, vary your flats' exposure time or gain, not the panel. (An adjustable version is on the [To do](#to-do) list.)
+> **Set it once and forget it.** You set the brightness once, during assembly ([step 7](#assembly)). There is currently **no access hole** to the converter's trim pot once the back wall is bolted on, so changing it later means taking the panel apart. After that, vary your flats' exposure time or gain, not the panel. (An adjustable version is on the [To do](#to-do) list.)
 
 > **Not weatherproof.** The panel is not sealed. The parts are just bolted together, the wire slots are open, and the LED strip (a non-waterproof type), converter and solder joints are bare. Keep it dry and out of dew, rain and damp air, use it only while taking flats, and take it off the scope afterwards.
 
@@ -20,9 +20,9 @@ Contents: [How it works](#how-it-works) · [Bill of materials](#bill-of-material
 
 ## How it works
 
-Light from the LED strip never shines straight at the diffuser. The strip stands on edge in a ring around a small baffle skirt, so it only reaches the diffuser after bouncing around the cavity, which evens the light out. The diffuser disc sits in a recess in the front of the surround and is clamped by the collar flange. The collar is the slip-on part that goes over the telescope's dew shield.
+Light from the LED strip never shines straight at the diffuser. The led strip stands on edge in a ring around a small baffle skirt, so it only reaches the diffuser after bouncing around the cavity, which evens the light out. The diffuser disc sits in a recess in the front of the surround and is clamped by the collar flange. The collar is the slip-on part that goes over the telescope's dew shield.
 
-Part order, from the telescope side to the back:
+Part assembly order, from the telescope side to the back:
 
 | # | Part | What it does |
 |---|------|--------------|
@@ -45,7 +45,7 @@ Render colours only tell the parts apart. For the real build, see [Filament colo
 
 ## Bill of materials
 
-Full list with short Amazon links: **[bom/BOM.pdf](bom/BOM.pdf)** (source: [bom/bom.html](bom/bom.html)). The PDF also lists the optional items; none are needed.
+Full list with Amazon links: **[bom/BOM.pdf](bom/BOM.pdf)** (source: [bom/bom.html](bom/bom.html)). The PDF also lists some optional items; none of which are needed for a complete build.
 
 | Item | Notes |
 |------|-------|
@@ -148,7 +148,7 @@ Each collar tab has a hex pocket in its free (scope-side) end for a standard M3 
 
 Do a dry fit of the printed parts and the diffuser before you wire anything.
 
-**Wire you will need:** between the buck converter (the puck) and the LED strip you need **1 to 2 inches (25-50 mm) of hook-up wire**, enough to run from the connector channel into the converter pocket through the side slot (step 3). The leads from the converter to your 12 V supply must be long enough to reach it (step 2).
+**Wire you will need:** between the buck converter (the puck) and the LED strip you need **2x 1 to 2 inches (25-50 mm) of hook-up wire**, enough to run from the connector channel into the converter pocket through the side slot (step 3). The leads from the converter to your 12 V supply must be long enough to reach it (step 2).
 
 1. **Print the parts.** Print the four parts in [stl/](stl/): collar, surround, back wall and diffuser. Clean any elephant's foot off the edges so the parts seat flat.
 2. **Wire the converter.** Solder the pigtail's two leads to the converter's **IN+ / IN-** pads. Plug the pigtail into your 12 V supply and, with a multimeter on **OUT+ / OUT-**, check what it reads. These converters usually ship set to a very low output, so leave the trim pot alone for now. Unplug before continuing. Heat-shrink the joints.
@@ -169,10 +169,8 @@ Do a dry fit of the printed parts and the diffuser before you wire anything.
 ## Using it
 
 1. Slide the collar over the RedCat's dew shield until it stops against the internal lip.
-2. Plug the pigtail into 12 V.
+2. Plug the pigtail into 12 V dc in port.
 3. Take your flats, changing exposure time or gain per filter as needed, then slip the panel off and store it somewhere dry.
-
-**Not weatherproof:** the panel is not sealed, so keep it dry and out of dew, rain and damp air. Don't leave it on the scope outside, and use it only while taking flats.
 
 If the brightness is wrong for your setup, unbolt the back wall and re-adjust the trim pot (assembly step 7).
 
@@ -195,7 +193,7 @@ Print [optional/flat_panel_collar_heat_insert.stl](optional/flat_panel_collar_he
 
 ### Solderless strip connectors
 
-COB strip-to-wire clip connectors (10 mm, 2-pin) replace soldering the wires to the strip pads. The connector channel in the surround is sized for them.
+COB strip-to-wire clip connectors (10 mm, 2-pin) replace soldering the wires to the led strip pads. The connector channel in the surround is sized for them.
 
 * **Step 3:** clip the red and black wires onto the start of the strip with a connector instead of soldering them.
 * **Step 5:** drop the connector into the channel.
@@ -208,7 +206,7 @@ Do this after step 9. Fix the power lead to the side of the panel with a small d
 
 ### Soldering flux
 
-Helps solder stick. Rosin-core solder alone works.
+Advice, using flux really helps solder stick to the pad. Rosin-core solder alone works.
 
 ---
 
