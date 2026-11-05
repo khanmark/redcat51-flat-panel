@@ -2,7 +2,7 @@
 
 A cheap, 3D-printed, slip-on **flat-field panel** for the William Optics RedCat 51 II. (A scaled-up version for other scopes is possible and how it can be accomplished is in the [appendix](#appendix-scaling-to-other-scopes-unverified).)
 
-Four support-free printed parts (collar, surround, back wall and an 88 mm **printed diffuser disc**), a ring of 12 V LED strip, and a small buck converter that dials the brightness down to something a camera can use for flats. Three M3 bolts and nuts hold it together.
+Four support-free printed parts (collar, surround, back wall and an 88 mm **printed diffuser disc**), a ring of 12 V LED strip, and a small buck converter that dials the brightness down to something a camera can use for flats. Three M3 bolts and nuts hold it together.  There is a minimum of 6 soldering points.  2 extra if you need to extend the pig tail so that your 2.1mm barrel plug can be extended to reach your dc port.
 
 > **Set it once and forget it.** You set the brightness once, during assembly ([step 7](#assembly)). There is currently **no access hole** to the converter's trim pot once the back wall is bolted on, so changing it later means taking the panel apart. After that, vary your flats' exposure time or gain, not the panel. (An adjustable version is on the [To do](#to-do) list.)
 
